@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" class="w-100">
+  <div class="card-header">
+    <h4>{% block title %} Search by "{{search}}" {% endblock %}: {{jobs_cnt}}</h4>
+  </div>
+  <a href="/" class="px-3 py-2">< Back</a>
+  <a href="/jobs_to_csv/{{search}}" class="p-3" target="_blank">export to csv</a>
+  <ul class="list-group list-group-flush">
+    {% for job in jobs %}
+      <li key={{loop.index}} class="list-group-item">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{job.title | capitalize}}</h5>
+            <div class="card-text text-secondary">{{job.company | capitalize}}</div>
+            <a href="{{job.link}}" class="btn btn-primary">Apply</a>
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
